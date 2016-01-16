@@ -1,4 +1,6 @@
-*.gem
+_site/
+.sass-cache/
+.jekyll-metadata.gem
 *.rbc
 /.config
 /coverage/
