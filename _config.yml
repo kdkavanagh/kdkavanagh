@@ -30,12 +30,11 @@ owner:
   avatar: bio-photo.jpg
   bio: "Describe your self."
   email: kdkavanagh@gmail.com
-  disqus-shortname:
-  twitter: kyledkavanagh
+  disqus-shortname: thoughtsdata
+  twitter:
   facebook: #username
   google:
     plus: #username
-    analytics:
     verify:
     ad-client:
     ad-slot:
