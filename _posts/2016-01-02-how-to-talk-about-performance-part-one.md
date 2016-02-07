@@ -85,7 +85,7 @@ I've also plotted lines which mark the key percentiles that we reported above to
 If the two performance modes are expected (i.e there are are two different code paths), we might expect to see two "stripes" of datapoints over time.  If system jitter is the cause, kicks in for a short period of time, we would see latency toggle from one mode of operation to the other, which is exactly what we see here.  Given the nature of this "toggling", its likely that something like CPU power saving mode disrupts the performance of the application.  (This of course is faked data, but I can assure you this very same latency profile is prevalent in the wild)
 
 
-#Up Next
+# Up Next
 
 Now that we have a foundation for reporting our results, we must learn what we should actually be measuring in our system.  In part two, we will look at the differences between "Service Time" and "Response Time".
 <br><br>
