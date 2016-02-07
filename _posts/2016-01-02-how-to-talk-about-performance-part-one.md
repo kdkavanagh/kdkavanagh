@@ -95,7 +95,7 @@ Now that we have a foundation for reporting our results, we must learn what we s
 ## PRM Calculation
 Given a set of datapoints x, and a function P that calculates a list of percentiles p from the set of datapoints, we calculate PRM as follows:
 <div>
-\[PRM(A=\{x | P(x,p)\}) =\sum_{n=2}^{m} \frac{A_{i}}{A_{i-1} 2^{n-2}}\]
+\[PRM(A=\{x | P(x,p)\}) =\sum_{i=2}^{m} \frac{A_{i}}{A_{i-1} 2^{i-2}}\]
 </div>
 
 For example, using the percentiles from set A above (50th - 99th),
