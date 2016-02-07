@@ -21,7 +21,7 @@ Many real world datasets do not give us a clean Normal Distribution. We almost a
 	<figcaption><a href="http://had.co.nz/data/movies/">IMDB Movie Data</a></figcaption>
 </figure>
 
-This distribution makes sense - only the biggest and best movies receive the attention of hundreds of IMDB reviewers, while most lessen known (independent, perhaps) films only garner a handful of votes.  The few most popular movies pull our mean number of votes far to the right, while the median proves to be more robust to these outliers.  In plain English, the median tells us that half of the movies on IMDB garner less than 30 votes.
+This distribution makes sense - only the biggest and best movies receive the attention of hundreds of IMDB reviewers, while most lesser known (independent, perhaps) films only garner a handful of votes.  The few most popular movies pull our mean number of votes far to the right, while the median proves to be more robust to these outliers.  In plain English, the median tells us that half of the movies on IMDB garner less than 30 votes.
 
 Similarly, performance data often follows a similar distribution - Many datapoints clustered with similar latencies, but a smaller number of datapoints with much higher latencies that drag the tail of the distribution far to the right.  Consequently, **the mean is not going to do us much good as a summary of latency,** since it is easily influenced by outliers (i.e it is not a robust measure of center).
 
@@ -34,7 +34,7 @@ A metric commonly reported side-by-side with averages is a standard deviation, w
 
 Instead, consider looking at **Median absolution deviation (MAD)**, which is the median of the deviations from the median of the overall dataset.
 
-Unfortunately, the robustness of the MAD is a double-edged sword. It is hardly affected by outliers, unlike the Std. Dev, and can tell us a lot about the variance of the majority of datapoints, though since we're often interested in the higher percentiles representing <5% of all datapoints. We need a metric that summarizes the changes between the middle and the upper percentiles.  To do this, I calculate a homemade metric I call **Percentile Ratio Measure (PRM)**, which sums the calculated ratios between selected percentiles, and weights them inversely to the distance from the median (e.g the 75th/50th ratio may have a weighting of 1, while the ratio between 90th/75th might be weighted as 0.5).  There isn't a one-size-fits-all formula to calculate this metric, and the percentiles and associated weights can be tuned based on your sensitivity to latency variance. <--Example in appendix-->
+Unfortunately, the robustness of the MAD is a double-edged sword. It is hardly affected by outliers, unlike the Std. Dev, and can tell us a lot about the variance of the majority of datapoints, though since we're often interested in the higher percentiles representing <5% of all datapoints. We need a metric that summarizes the changes between the middle and the upper percentiles.  To do this, I calculate a homemade metric I call **Percentile Ratio Measure (PRM)**, which sums the calculated ratios between selected percentiles, and weights them inversely to the distance from the median (e.g the 75th/50th ratio may have a weighting of 1, while the ratio between 90th/75th might be weighted as 0.5).  There isn't a one-size-fits-all formula to calculate this metric, and the percentiles and associated weights can be tuned based on your sensitivity to latency variance. An example calculation is included at the end of this post.
 
 # Importance of Visualizing Latency
 Throughout my career, I've learned that a non-technical audience responds better to beautifully-presented technical information than ugly presentations or numbers alone.  Spending an extra 10min to make an excel chart clean and clear goes a long way, and **spending a few days learning ggplot2 for R goes even further in making your data easily understandable**.  
@@ -90,6 +90,18 @@ Now that we have a foundation for reporting our results, we must learn what we s
 <br><br>
 
 # Further Reading & Resources
+
+<script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+## PRM Calculation
+Given a set of datapoints x, and a function P that calculates a list of percentiles p from the set of datapoints, we calculate PRM as follows:
+<div>
+\[PRM(A=\{x | P(x,p)\}) =\sum_{n=2}^{m} \frac{A_{i}}{A_{i-1} 2^{n-2}}\]
+</div>
+
+For example, using the percentiles from set A above (50th - 99th),
+<div>
+\[PRM = \frac{54.9}{50.5 \cdot 2^0} +  \frac{66.7}{54.9 \cdot 2^1}+\frac{70.5}{66.7 \cdot 2^2} +\frac{82.8}{70.5 \cdot 2^3} \]
+</div>
 
 ## Generating the Graphs
 R and the ggplot2 library were used to generate the charts in this post (excluding Anscombe's Quartet),  Here's the code I used to make them:
