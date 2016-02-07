@@ -86,6 +86,7 @@ If the two performance modes are expected (i.e there are are two different code 
 
 
 #Up Next
+
 Now that we have a foundation for reporting our results, we must learn what we should actually be measuring in our system.  In part two, we will look at the differences between "Service Time" and "Response Time".
 <br><br>
 
@@ -95,7 +96,7 @@ Now that we have a foundation for reporting our results, we must learn what we s
 ## PRM Calculation
 Given a set of datapoints x, and a function P that calculates a list of percentiles p from the set of datapoints, we calculate PRM as follows:
 <div>
-\[PRM(A=\{x | P(x,p)\}) =\sum_{i=2}^{m} \frac{A_{i}}{A_{i-1} 2^{i-2}}\]
+\[PRM(A=\{x | P(x,p)\}) =\sum_{i=2}^{m} \frac{A_{i}}{A_{i-1} \cdot 2^{i-2}}\]
 </div>
 
 For example, using the percentiles from set A above (50th - 99th),
