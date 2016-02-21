@@ -48,6 +48,11 @@ How much weight you put on each of these two numbers depends on the characterist
 # How to get faster
 For those who have never eaten at Chipotle, your food is prepared in an assembly line - three or so workers each adding which ever ingredients you specify to your burrito and passing it off to the next worker in the line.  Each of the workers cooperate with each other such that if their colleague down the line is getting behind they too will slow down to avoid a backup in the middle of the assembly line.  **This is known as applying backpressure and forces the queue to build in front of the very first worker, rather than somewhere in the middle.**
 
+<figure>
+	<img src="/images/chipotle.jpg">
+	<figcaption><a href="http://www.dispatch.com/content/stories/business/2012/01/10/chipotle-model-keeps-gaining-followers.html">Source</a></figcaption>
+</figure>
+
 Imagine instead if the workers in the Chipotle assembly line did not apply backpressure, and processed each order as quickly as possible from the time the order was handed to their stage in the assembly line.  If a worker down the line is not keeping up, workers ahead of him will stack up the orders for the slower worker to process.
 
 For the sake of this example, assume that the slowest stage in this assembly pipeline is the the last stage: paying for the food (and it likely is with new chip-enabled credit cards).  If you were the manager of this Chipotle and wanted to improve response time during the lunch rush. Let's say you could implement a new burrito assembly line stage which would decrease the food prep time by 20%. Making this change and ignoring the bottleneck of your system - the cashier - will only cause the queue in front of the cashier to grow, and would not help your response time.
@@ -62,6 +67,12 @@ Martin Thompson is a computer science performance expert who has given many talk
 Gil Tene's popular talk on ["How not to measure latency"](http://www.azulsystems.com/sites/default/files/images/HowNotToMeasureLatency_LLSummit_NYC_12Nov2013.pdf) talks about some factors which affect response time but would not show up in service time measurements (e.g java garbage collections)
 
 [Little's Law](https://en.wikipedia.org/wiki/Little%27s_law) is an excellent place to get started learning about the math behind queuing theory.
+
+The Guardian [recently wrote](http://www.theguardian.com/uk-news/2016/jan/16/the-tube-at-a-standstill-why-tfl-stopped-people-walking-up-the-escalators) about how Transport for London recommended encouraging everyone to actually stand on escalators, rather than walking up them as a way to reduce the bottleneck by increasing parallelism.
+
+<figure>
+	<img src="/images/guardianGraphic.png">
+</figure>
 
 ### Response Time Visualization
 The example above simulated response times for a [M/D/1 queue](https://en.wikipedia.org/wiki/M/D/1_queue) with a constant 3 minute service time
