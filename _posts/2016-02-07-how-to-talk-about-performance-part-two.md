@@ -71,7 +71,7 @@ Gil Tene's popular talk on ["How not to measure latency"](http://www.azulsystems
 The Guardian [recently wrote](http://www.theguardian.com/uk-news/2016/jan/16/the-tube-at-a-standstill-why-tfl-stopped-people-walking-up-the-escalators) about how Transport for London recommended encouraging everyone to actually stand on escalators, rather than walking up them as a way to reduce the bottleneck by increasing parallelism.
 
 <figure>
-	<img src="/images/guardianGraphic.png">
+	<img src="/images/guardianBottleneck.png">
 </figure>
 
 ### Response Time Visualization
