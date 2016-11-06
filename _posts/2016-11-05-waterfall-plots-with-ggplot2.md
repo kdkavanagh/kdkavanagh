@@ -6,7 +6,7 @@ modified: 2016-11-05
 tags: [R, visualization, ggplot2, plots]
 comments: true
 image:
-  feature: /images/waterfallWide.png
+  feature: waterfallWide.png
 
 ---
 # Waterfall Plots
