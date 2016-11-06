@@ -176,7 +176,7 @@ Plotting histograms instead of density makes things a little easier and allows u
 Waterfall plots on [Wikipedia](https://en.wikipedia.org/wiki/Waterfall_plot)
 
 ## Sample dataset generation
-Generate a data.table and subsequent histogram data to pass into waterfall generation
+Generate a data.table and subsequent histogram data to pass into waterfall generation. Requires rcpp code from <a href="measuring-jitter/">my post on classifying jitter</a>
 
 {% highlight R %}
 require(data.table)
