@@ -123,7 +123,7 @@ Changing our ggplot construction to individually add groups two layers at a time
 {% endhighlight %}
 
 # Plotting Histograms directly
-Plotting histograms instead of density makes things a little easier and allows us to use standard ggplot syntax.
+Plotting histograms instead of density makes things a little easier and allows us to use standard ggplot syntax. The white outlines (the "color" aesthetic in geom_rect) can be removed in favor of just the "fill" aesthetic if they become distracting.
 
 <figure>
 	<img src="/images/waterfallHisto.png">
