@@ -10,7 +10,7 @@ image:
 
 ---
 # Waterfall Plots
-As a performance engineer, I spend a ton of time trying to visualize latency and other system data in ways that make it easy to summarize the characteristics of complex systems.  In looking for ways to plot many discrete histograms side-by-side (3 dimensions, x=value, y=count, z=group), I came across Brendan Gregg's outstanding work with [latency heatmaps and waterfall plots](http://www.brendangregg.com/FrequencyTrails/intro.html).  Coalescing the distributions into a heatmap did not fit well with my specific use case, but the waterfall visualizations would perfectly capture what I was trying to show.  
+As a performance engineer, I spend a ton of time trying to visualize latency and other system data in ways that make it easy to summarize the characteristics of complex systems.  In looking for ways to plot many discrete histograms side-by-side (3 dimensions, x=value, y=count, z=group), I came across Brendan Gregg's outstanding work with [latency heatmaps and waterfall plots](http://www.brendangregg.com/FrequencyTrails/intro.html).  Coalescing the distributions into a heatmap did not fit well with my specific use case, as each distribution was discrete and independent of the other distributions, but the waterfall visualizations would perfectly capture what I was trying to show.  
 
 <figure >
     <img src="http://also.kottke.org/misc/images/joy-division-unknown-pleasures.jpg">
@@ -30,6 +30,7 @@ I decided to take a crack at it using ggplot. My idea was to take each group in 
     <img src="/images/waterfallFillReverse.png">
     <figcaption>Reversing the order of geom_ribbon and geom_line doesn't cut it</figcaption>
 </figure>
+
 
 My first attempt using standard ggplot syntax looked something like this:
 
