@@ -12,6 +12,12 @@ image:
 # Waterfall Plots
 As a performance engineer, I spend a ton of time trying to visualize latency and other system data in ways that make it easy to summarize the characteristics of complex systems.  In looking for ways to plot many discrete histograms side-by-side (3 dimensions, x=value, y=count, z=group), I came across Brendan Gregg's outstanding work with [latency heatmaps and waterfall plots](http://www.brendangregg.com/FrequencyTrails/intro.html).  Coalescing the distributions into a heatmap did not fit well with my specific use case, but the waterfall visualizations would perfectly capture what I was trying to show.  
 
+<figure >
+    <img src="http://also.kottke.org/misc/images/joy-division-unknown-pleasures.jpg">
+    <figcaption>Joy Divison's [Unknown Pleasures](https://en.wikipedia.org/wiki/Unknown_Pleasures) album cover depicting radio waves detected from a pulsar</figcaption>
+</figure>
+
+
 Brendan provides the source code to generate this style of plot, though it requires jumping from R to ImageMagick to lay out the distributions.  After searching more for a fully encapsulated solution, I could not find a way to plot data in this style fully inside of R, without depending on any post-processing in another program (e.g GNUPlot, ImageMagick).
 
 # The strategy
