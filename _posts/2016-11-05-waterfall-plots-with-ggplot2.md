@@ -7,7 +7,9 @@ tags: [R, visualization, ggplot2, plots]
 comments: true
 ---
 # Waterfall Plots
-This style of visualization can be very powerful for many usecases, but in my searching, I could not find a way to plot data in this style inside of R, without depending on any post-processing in another program (e.g GNUPlot, ImageMagick).
+As a performance engineer, I spend a ton of time trying to visualize latency and other system data in ways that make it easy to summarize the characteristics of complex systems.  In looking for ways to plot many discrete histograms side-by-side (3 dimensions, x=value, y=count, z=group), I came across Brendan Gregg's work with [latency heatmaps and waterfall plots](http://www.brendangregg.com/FrequencyTrails/intro.html).  Collapsing the distributions into a heatmap did not fit well with my specific use case, but the waterfall visualizations would perfectly capture what I was trying to show.  
+
+Brendan provides the source code to generate this style of plot, though it requires jumping from R to ImageMagick to lay out the distributions.  After searching more for a fully encapsulated solution, I could not find a way to plot data in this style fully inside of R, without depending on any post-processing in another program (e.g GNUPlot, ImageMagick).
 
 # The strategy
 I decided to take a crack at it using ggplot. My idea was to take each group in the dataset and shift it up the y-axis proportional to the group's ordinal index among all groups.  I'd then use white or black coloring under the curve to "cover up" the groups that are below the current group in terms of z-index (in web design terms).  We'll then remove all axis, labels, and legends to make the visualization clean.  The y-axis certainly doesn't make sense to display since we are artificially setting y values, but the x-axis could be kept should the need arise.
@@ -63,6 +65,7 @@ Switching the order of the geom_ribbon and geom_line also doesn't help, as the r
     <img src="/images/waterfallFillReverse.png">
     <figcaption>Reversing the order of geom_ribbon and geom_line doesn't cut it</figcaption>
 </figure>
+
 
 # What works
 
@@ -121,6 +124,8 @@ Changing our ggplot construction to individually add groups two layers at a time
 # Further Reading & Resources
 
 ## Sample dataset generation
+Generate a data.table and subsequent histogram data to pass into waterfall generation
+
 {% highlight R %}
 require(data.table)
 require(Rcpp)
@@ -129,7 +134,6 @@ require(ggplot2)
 nextTime = function(n, rateParameter) {
   return(sapply(1:n,function(i) -log(1.0 - runif(1)) / rateParameter))
 }
-c(7/8, 1/2, 19/20, 13/25, 5/7, 3/4, 10/44, 17/27, 34/98)
 
 allMsgs=lapply(1:50,function(d) {
   # Randomly calculate 1000 message interarrivals using Poisson processes
