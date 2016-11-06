@@ -5,6 +5,9 @@ excerpt: "Using R and ggplot2 to build 2D visualizations with 3D perspectives"
 modified: 2016-11-05
 tags: [R, visualization, ggplot2, plots]
 comments: true
+image:
+  feature: waterfallWide.png
+
 ---
 # Waterfall Plots
 As a performance engineer, I spend a ton of time trying to visualize latency and other system data in ways that make it easy to summarize the characteristics of complex systems.  In looking for ways to plot many discrete histograms side-by-side (3 dimensions, x=value, y=count, z=group), I came across Brendan Gregg's work with [latency heatmaps and waterfall plots](http://www.brendangregg.com/FrequencyTrails/intro.html).  Collapsing the distributions into a heatmap did not fit well with my specific use case, but the waterfall visualizations would perfectly capture what I was trying to show.  
@@ -15,6 +18,13 @@ Brendan provides the source code to generate this style of plot, though it requi
 I decided to take a crack at it using ggplot. My idea was to take each group in the dataset and shift it up the y-axis proportional to the group's ordinal index among all groups.  I'd then use white or black coloring under the curve to "cover up" the groups that are below the current group in terms of z-index (in web design terms).  We'll then remove all axis, labels, and legends to make the visualization clean.  The y-axis certainly doesn't make sense to display since we are artificially setting y values, but the x-axis could be kept should the need arise.
 
 # What doesn't work
+
+<figure class="half">
+    <img src="/images/waterfallWithFill.png">
+    <img src="/images/waterfallFillReverse.png">
+    <figcaption>Reversing the order of geom_ribbon and geom_line doesn't cut it</figcaption>
+</figure>
+
 My first attempt using standard ggplot syntax looked something like this:
 
 {% highlight R %}
@@ -59,13 +69,6 @@ My first attempt using standard ggplot syntax looked something like this:
 Although ggplot2 will create two layers for every value in groupVar, the ordering of the layers causes this plot to fall short.  Ggplot2 will first create N layers of ribbons, followed by N layers of lines on top of them.  Since the line and the ribbon for any given group do not have the same z-index, we aren't able to cover up lines with ribbons.
 
 Switching the order of the geom_ribbon and geom_line also doesn't help, as the ribbons will end up hiding lines below it on the y-axis.
-
-<figure class="half">
-    <img src="/images/waterfallWithFill.png">
-    <img src="/images/waterfallFillReverse.png">
-    <figcaption>Reversing the order of geom_ribbon and geom_line doesn't cut it</figcaption>
-</figure>
-
 
 # What works
 
@@ -122,6 +125,8 @@ Changing our ggplot construction to individually add groups two layers at a time
 
 
 # Further Reading & Resources
+
+Waterfall plots on [Wikipedia](https://en.wikipedia.org/wiki/Waterfall_plot)
 
 ## Sample dataset generation
 Generate a data.table and subsequent histogram data to pass into waterfall generation
