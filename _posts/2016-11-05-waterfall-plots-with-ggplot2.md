@@ -122,6 +122,47 @@ Changing our ggplot construction to individually add groups two layers at a time
   }
 {% endhighlight %}
 
+# Plotting Histograms directly
+Plotting histograms instead of density makes things a little easier and allows us to use standard ggplot syntax.
+
+<figure>
+	<img src="/images/waterfallHisto.png">
+</figure>
+
+{% highlight R %}
+  plotWaterfallHistograms=function(data,variable, groupVar, binWidth, offset=NULL, invertColor=F) {
+  minVal=min(data[,get(variable)], na.rm=T)
+  maxVal=max(data[,get(variable)], na.rm=T)
+  brks = seq(minVal, maxVal, binWidth);
+  df=data[,list(num=.N),by=list(group=get(groupVar), bin=cut(get(variable), brks))]
+  df[, i:=.GRP,by=group]
+
+  df[,lower:=as.numeric( sub("\\((.+),.*", "\\1", bin))];
+  df[,upper:=as.numeric( sub("[^,]*,([^]]*)\\]", "\\1", bin) )];
+
+  grps=uniqueN(df[,list(i)])
+  if(is.null(offset)) {
+    #Pick the 75th percentile of the entire dataset to use as an offset.  Seems to work well
+    offset = quantile(df$num, 0.75)
+  }
+
+  p=ggplot(df,aes(xmin=lower, xmax=upper, ymin=(grps-i)*offset, ymax=(grps-i)*offset+num, group=i, fill=i) )+
+    geom_rect( color=ifelse(invertColor,"white", "black"))+
+    +theme(axis.line=element_blank(),
+           axis.text.x=element_blank(),
+           axis.text.y=element_blank(),
+           axis.ticks=element_blank(),
+           axis.title.x=element_blank(),
+           axis.title.y=element_blank(),
+           legend.position="none",
+           panel.background=element_rect(fill = ifelse(invertColor,"black", "white")),
+           panel.border=element_blank(),
+           panel.grid.major=element_blank(),
+           panel.grid.minor=element_blank(),
+           plot.background=element_blank())
+  return(p)
+  }
+{% endhighlight %}
 
 
 # Further Reading & Resources
@@ -146,7 +187,7 @@ allMsgs=lapply(1:50,function(d) {
   messages[,responseTime:=rnorm(.N,runif(1,5,20),runif(1,1,7))]
   messages[,responseTime:=responseTime-min(responseTime)]
 
-  messages$run=as.character(d)
+  messages[,run:=as.character(d)]
   return(messages)
 
 })
