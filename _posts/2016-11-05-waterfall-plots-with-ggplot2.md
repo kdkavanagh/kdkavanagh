@@ -14,7 +14,7 @@ As a performance engineer, I spend a ton of time trying to visualize latency and
 
 <figure >
     <img src="http://also.kottke.org/misc/images/joy-division-unknown-pleasures.jpg">
-    <figcaption>Joy Divison's [Unknown Pleasures](https://en.wikipedia.org/wiki/Unknown_Pleasures) album cover depicting radio waves detected from a pulsar</figcaption>
+    <figcaption>Joy Divison's <a href="https://en.wikipedia.org/wiki/Unknown_Pleasures ">Unknown Pleasures</a> album cover depicting radio waves detected from a pulsar</figcaption>
 </figure>
 
 
