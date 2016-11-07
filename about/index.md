@@ -1,9 +1,7 @@
 ---
-layout: page
 title: About Me
 tags: [about]
-modified: 2016-01-09
-comments: false
+modified: 2016-11-06
 share: false
 image:
   feature: chicago.jpg
@@ -11,7 +9,7 @@ image:
 
 I am a Software Engineer and market microstructure enthusiast at CME Group in Chicago IL, working on the CME's low-latency trade matching engine that powers CME Globex.  
 
-As a latency specialist, I've written performance tracking libraries that minimize the observer effect, analyzed billions of performance datapoints using data science tools, and tuned, redesigned, or otherwise rewritten applications to perform more optimally. 
+As a latency specialist, I've written performance tracking libraries that minimize the observer effect, analyzed billions of performance datapoints using data science tools, and tuned, redesigned, or otherwise rewritten applications to perform more optimally.
 
 Working on the matching engine team at one of the world's largest financial exchanges, I have a unique opportunity to study our markets like no one outside of the Merc can.  My team's research and decision making helps shape
 and define global financial markets.  
