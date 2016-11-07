@@ -4,7 +4,7 @@ excerpt: "Using R and ggplot2 to build 2D visualizations with 3D perspectives"
 modified: 2016-11-05
 tags: [R, visualization, ggplot2, plots]
 header:
-  image: waterfallWide.png
+  image: /images/waterfallWide.png
 
 ---
 # Waterfall Plots
