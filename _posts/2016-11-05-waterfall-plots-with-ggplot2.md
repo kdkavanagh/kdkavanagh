@@ -12,7 +12,7 @@ header:
 # Waterfall Plots
 As a performance engineer, I spend a ton of time trying to visualize latency and other system data in ways that make it easy to summarize the characteristics of complex systems.  In looking for ways to plot many discrete histograms side-by-side (3 dimensions, x=value, y=count, z=group), I came across Brendan Gregg's outstanding work with [latency heatmaps and waterfall plots](http://www.brendangregg.com/FrequencyTrails/intro.html).  Coalescing the distributions into a heatmap did not fit well with my specific use case, as each distribution was discrete and independent of the other distributions, but the waterfall visualizations would perfectly capture what I was trying to show.  
 
-<figure >
+<figure style="width: 50%" class="align-center">
     <img src="http://also.kottke.org/misc/images/joy-division-unknown-pleasures.jpg">
     <figcaption>Joy Divison's <a href="https://en.wikipedia.org/wiki/Unknown_Pleasures ">Unknown Pleasures</a> album cover depicting radio waves detected from a pulsar</figcaption>
 </figure>
@@ -79,7 +79,7 @@ Switching the order of the geom_ribbon and geom_line also doesn't help, as the r
 
 # What works
 
-<figure style="width: 60%" class="align-right">
+<figure style="width: 60%">
 	<img src="/images/waterfallDensity.png">
 </figure>
 
