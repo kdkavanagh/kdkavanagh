@@ -79,7 +79,7 @@ Switching the order of the geom_ribbon and geom_line also doesn't help, as the r
 
 # What works
 
-<figure>
+<figure style="width: 60%" class="align-right">
 	<img src="/images/waterfallDensity.png">
 </figure>
 
