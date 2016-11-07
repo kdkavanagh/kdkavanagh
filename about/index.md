@@ -3,8 +3,8 @@ title: About Me
 tags: [about]
 modified: 2016-11-06
 share: false
-image:
-  feature: chicago.jpg
+header:
+  image: chicago.jpg
 ---
 
 I am a Software Engineer and market microstructure enthusiast at CME Group in Chicago IL, working on the CME's low-latency trade matching engine that powers CME Globex.  
