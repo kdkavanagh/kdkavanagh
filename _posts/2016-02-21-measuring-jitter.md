@@ -3,6 +3,9 @@ title: Measuring Jitter - Work In Progress
 excerpt: "Using R to separate high latency caused by queuing from that caused randomly by the operating system, garbage collections, power savings, etc in massive datasets"
 modified: 2016-02-21
 tags: [performance, R, jitter, visualization]
+categories:
+  - R
+  - Performance
 ---
 # Generating the Dummy Data
 First we generate a dummy set of messages.  Common queuing theory states that messages typically arrive to a system at rates following a Poisson distribution, and as such, we use a Poisson process to model the interarrival times of our fake messages.  We then perform a cumulative sum on these arrival rates to calculate the arrival time of each message in our data set.

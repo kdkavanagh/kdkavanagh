@@ -2,6 +2,8 @@
 title: How To Talk About Performance - Part 1
 excerpt: "The numbers and graphs used to report the performance of the fastest computer software and hardware."
 modified: 2016-01-09
+categories:
+  - Performance
 tags: [performance, metrics, latency, R]
 ---
 In 90% of the software engineering world, performance is often something that is "fine until it isn't", where only the most concerned developers mull over latency metrics until there is a some kind of capacity issue or noticeable performance degradation to the end user.  This post is intended to be a crash course on how to answer the call your infrastructure & ops team sounds the alarm because your application can't keep up with demand and you must confront a performance problem.
