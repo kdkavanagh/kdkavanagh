@@ -1,10 +1,8 @@
 ---
-layout: post
 title: How To Talk About Performance - Part 2
 excerpt: "The right things to measure and report to paint an accurate performance picture"
 modified: 2016-02-20
 tags: [performance, response time, service time, latency]
-comments: true
 ---
 In part 1 of this post, we talked about how to report on performance - The important numbers and how to visualize them.  Now we must know what we should actually be measuring in our system.
 
