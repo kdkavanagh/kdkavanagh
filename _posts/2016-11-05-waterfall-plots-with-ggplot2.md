@@ -108,6 +108,7 @@ Changing our ggplot construction to individually add groups two layers at a time
                      plot.background=element_blank())
 
     #Work thru the groups in reverse order so that the highest group has the lowest z-index and the series at the bottom is in the foreground
+    uniqGroups=rev(unique(data[,get(groupVar)]))
     nGroups = length(uniqGroups);
     if(is.null(offset)) {
       #Pick the 75th percentile of the entire dataset to use as an offset.  Seems to work well
@@ -141,7 +142,7 @@ Plotting histograms instead of density makes things a little easier and allows u
   minVal=min(data[,get(variable)], na.rm=T)
   maxVal=max(data[,get(variable)], na.rm=T)
   brks = seq(minVal, maxVal, binWidth);
-  df=data[,list(num=.N),by=list(group=get(groupVar), bin=cut(get(variable), brks))]
+  df=data[,list(num=.N),by=list(group=get(groupVar), bin=cut(as.numeric(get(variable)), brks, dig.lab=10))]
   df[, i:=.GRP,by=group]
 
   df[,lower:=as.numeric( sub("\\((.+),.*", "\\1", bin))];
@@ -202,7 +203,7 @@ allMsgs=lapply(1:50,function(d) {
 allMsgs=rbindlist(allMsgs)
 #Bin the data
 data=allMsgs[,list(num=.N),by=list(run, bin=cut(responseTime, 100))]
-#Adjust the bins to numberics
+#Adjust the bins to numerics
 labs=levels(data$bin)
 levels(data$bin) = as.numeric( sub("\\((.+),.*", "\\1", labs))
 data[,bin:=as.numeric(levels(bin))[bin]]
